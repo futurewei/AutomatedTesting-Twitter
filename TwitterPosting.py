@@ -2,7 +2,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-class Twitter():
+class Twitter:
+    def __init__(self, user, pw):
+        self.userName = user
+        self.password = pw
+
     def typing(self):
         url = "https://twitter.com/"
         driver = webdriver.Firefox(executable_path=r'/Users/laiwei/Desktop/WebScrapping/geckodriver')
@@ -17,13 +21,13 @@ class Twitter():
 
         userName = driver.find_element(By.XPATH, "//*[@id='login-dialog-dialog']/div[2]/div[2]/div[2]/form/div[1]/input")
         userName.clear()
-        userName.send_keys("Your account")
+        userName.send_keys(self.userName)
 
         time.sleep(1)
 
         password = driver.find_element(By.XPATH, "//*[@id='login-dialog-dialog']/div[2]/div[2]/div[2]/form/div[2]/input")
         password.clear()
-        password.send_keys("Your password")
+        password.send_keys(self.password)
 
         time.sleep(1)
         confirm = driver.find_element(By.XPATH, "//*[@id='login-dialog-dialog']/div[2]/div[2]/div[2]/form/input[1]")
@@ -46,5 +50,5 @@ class Twitter():
             time.sleep(1)
 
 
-twitter = Twitter()
-twitter.typing()
+#twitter = Twitter()
+#twitter.typing()
